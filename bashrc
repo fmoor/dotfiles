@@ -100,3 +100,4 @@ export PATH="$HOME/.node_modules_global/bin:$PATH"
 
 export PYTHONDONTWRITEBYTECODE=true
 source ~/bin/auto-activate-virtualenv.sh
+eval "$(direnv hook bash)"  # requires 'apt install direnv'
