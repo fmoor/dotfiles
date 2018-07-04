@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export EDITOR=nano
+export PATH="$HOME/.node_modules_global/bin:$PATH"
+export PYTHONDONTWRITEBYTECODE=true

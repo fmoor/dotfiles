@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -78,11 +80,9 @@ xterm*|rxvt*)
 esac
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -90,14 +90,16 @@ fi
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
+    source /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+    source /etc/bash_completion
   fi
 fi
 
-export PATH="$HOME/.node_modules_global/bin:$PATH"
+# Environment variables
+if [ -f ~/.bash_variables ]; then
+    source ~/.bash_variables
+fi
 
-export PYTHONDONTWRITEBYTECODE=true
-source ~/bin/auto-activate-virtualenv.sh
+source ~/.local/bin/auto-activate-virtualenv.sh
 eval "$(direnv hook bash)"  # requires 'apt install direnv'
