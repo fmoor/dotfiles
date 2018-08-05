@@ -3,3 +3,5 @@
 export EDITOR=nano
 export PATH="$HOME/.node_modules_global/bin:$PATH"
 export PYTHONDONTWRITEBYTECODE=true
+export PIPENV_VENV_IN_PROJECT=true
+export __LATEST_PYTHON__="python3.7"

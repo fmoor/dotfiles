@@ -16,9 +16,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias pup='pip install --upgrade pip setuptools'
-alias venv='python3.6 -m venv .venv && _auto_activate_virtualenv && pup'
-alias venv2='virtualenv .venv && _auto_activate_virtualenv && pup'
+alias pup='pip install --upgrade pip setuptools pipenv'
 alias cb='xclip -sel clip'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
 alias beep='paplay /usr/share/sounds/ubuntu/notifications/Positive.ogg'
@@ -32,9 +30,37 @@ alias ga='git add'
 alias gb='git branch' 
 alias gd='git diff' 
 alias gl='git log --graph --decorate --oneline'
-alias gstat='git status' 
+alias gstat='git status'
 alias gstsh='git stash'
-alias gpl='git pull' 
+alias gpl='git pull'
 alias gplo='git pull origin master'
 alias gpu='git push'
 alias gpuo='git push origin master'
+
+venv() {
+  if [ $# -gt 1 ]; then
+    echo "too many arguments"
+    return 1
+  fi
+
+  echo "args $@"
+
+  INTERPRETER="$1"
+  if [ -z "$1" ]; then
+    INTERPRETER="$__LATEST_PYTHON__"
+  fi
+
+  echo "interpreter $INTERPRETER"
+
+  if [[ $INTERPRETER == python2* ]]; then
+    CMD="virtualenv -p $INTERPRETER .venv"
+  else
+    CMD="$INTERPRETER -m venv .venv"
+  fi
+
+  echo "command $CMD"
+
+  eval $CMD
+  _auto_activate_virtualenv
+  pup
+}
