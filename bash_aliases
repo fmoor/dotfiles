@@ -16,6 +16,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias uu='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove'
 alias pup='pip install --upgrade pip setuptools pipenv'
 alias cb='xclip -sel clip'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
