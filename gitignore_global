@@ -1,4 +1,5 @@
 .envrc
 .idea/
 .venv/
+.venv3/
 venv/
