@@ -16,8 +16,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias uu='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove'
-alias pup='pip install --upgrade pip setuptools pipenv'
+alias uu='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
+alias pup='pip install --upgrade pip setuptools'
 alias cb='xclip -sel clip'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
 alias beep='paplay /usr/share/sounds/ubuntu/notifications/Positive.ogg'
@@ -43,8 +43,6 @@ venv() {
     echo "too many arguments"
     return 1
   fi
-
-  echo "args $@"
 
   INTERPRETER="$1"
   if [ -z "$1" ]; then
