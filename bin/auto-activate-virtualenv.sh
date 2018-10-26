@@ -55,17 +55,36 @@ _search_up() {
 # Deactivate old environment if there was one activated.
 _deactivate_if_activated() {
     if [ "$(type -t deactivate)" = function ]; then
+        # deactivate uses this variable to reset the prompt.
+        _OLD_VIRTUAL_PS1="$PS1"
+
         deactivate
     fi
 }
 
+
+# Add the project name as the venv name to the prompt.
+_update_prompt() {
+    local name=$1
+
+    if [ -z ${name+x} ]; then
+        PS1=$PS1
+    else
+        PS1="($name) $PS1"
+    fi
+
+    export PS1
+}
+
+
 _auto_activate_virtualenv() {
     # Support both venv and .venv conventions.
-    _VENV_DIR="$(_search_up  \( -name ".venv" -o -name "venv" \))"
+    local _VENV_DIR="$(_search_up  \( -name ".venv" -o -name "venv" \))"
     
-    if [ "$?" -ne 0 ]; then  # no virtualenv was found
+    if [ "$?" -ne 0 ]; then
+        # no virtualenv was found
         _deactivate_if_activated
-        return
+        return 0
     fi
     
     # Make sure it's really a venv
@@ -73,14 +92,16 @@ _auto_activate_virtualenv() {
         return 0
     fi
 
+    _PROJECT_DIR=$(readlink -f "$_VENV_DIR"/..)
+    _VENV_NAME=$(basename ${_PROJECT_DIR})
+
     # Check to see if the venv found is already activated.
     if [ "$VIRTUAL_ENV" = "$_VENV_DIR" ]; then
+        _update_prompt ${_VENV_NAME}
         return 0
     fi
 
     _deactivate_if_activated
-    _PROJECT_DIR=$(readlink -f "$_VENV_DIR"/..)
-    _VENV_NAME=$(basename $_PROJECT_DIR)
 
     # Tell activate not to change the prompt.
     VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -93,13 +114,8 @@ _auto_activate_virtualenv() {
         return 1
     fi
 
-    # deactivate uses this variable to reset the prompt.
-    _OLD_VIRTUAL_PS1="$PS1"
-
-    # Add the project name as the venv name to the prompt.
-    PS1="($_VENV_NAME) $PS1"
-    export PS1
+    _update_prompt ${_VENV_NAME}
 }
 
-export PROMPT_COMMAND="_auto_activate_virtualenv; $PROMPT_COMMAND"
+export PROMPT_COMMAND="${PROMPT_COMMAND}_auto_activate_virtualenv"
 
