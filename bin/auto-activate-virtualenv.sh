@@ -77,8 +77,24 @@ _update_prompt() {
 }
 
 
+denv() {
+    export __VENV_DEACTIVATED__=true
+}
+
+
+aenv() {
+    export __VENV_DEACTIVATED__=false
+}
+
+
 _auto_activate_virtualenv() {
     # Support both venv and .venv conventions.
+
+    if [ "$__VENV_DEACTIVATED__" = "true" ]; then
+        _deactivate_if_activated
+        return 0
+    fi
+
     local _VENV_DIR="$(_search_up  \( -name ".venv" -o -name "venv" \))"
     
     if [ "$?" -ne 0 ]; then
