@@ -77,19 +77,19 @@ _update_prompt() {
 }
 
 
+# deactivate virtualenv
 denv() {
     export __VENV_DEACTIVATED__=true
 }
 
 
+# activate virtualenv (default)
 aenv() {
     export __VENV_DEACTIVATED__=false
 }
 
 
 _auto_activate_virtualenv() {
-    # Support both venv and .venv conventions.
-
     if [ "$__VENV_DEACTIVATED__" = "true" ]; then
         _deactivate_if_activated
         return 0
@@ -119,7 +119,7 @@ _auto_activate_virtualenv() {
 
     _deactivate_if_activated
 
-    # Tell activate not to change the prompt.
+    # Tell .venv/bin/activate not to change the prompt.
     VIRTUAL_ENV_DISABLE_PROMPT=1
 
     source $_VENV_DIR/bin/activate
