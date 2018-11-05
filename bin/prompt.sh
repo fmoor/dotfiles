@@ -33,7 +33,7 @@ _color_prompt() {
     local green='\[\033[01;32m\]'
     local white='\[\033[00m\]'
 
-    export PS1="${green}\u@\h${white}:${blue}\w${red}$(_parse_git_branch) ${return_code} ${white}\n\$ "
+    export PS1="${green}\u@\h${white}:${blue}\w ${red}$(_parse_git_branch) ${return_code} ${white}\n\$ "
 }
 
 
