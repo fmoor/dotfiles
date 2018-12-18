@@ -27,8 +27,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # Git Commands
 alias ga='git add'
 alias gb='git branches'
-alias gd='git diff' 
+alias gd='git diff'
 alias gl='git log --graph --decorate --oneline'
+alias gs='git status'
 
 venv() {
   if [ $# -gt 1 ]; then
