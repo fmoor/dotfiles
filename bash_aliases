@@ -29,6 +29,7 @@ alias ga='git add'
 alias gb='git branches'
 alias gd='git diff'
 alias gl='git log --graph --decorate --oneline'
+alias gp='git push'
 alias gs='git status'
 
 venv() {
