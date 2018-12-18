@@ -4,8 +4,6 @@
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -28,15 +26,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Git Commands
 alias ga='git add'
-alias gb='git branch' 
+alias gb='git branches'
 alias gd='git diff' 
 alias gl='git log --graph --decorate --oneline'
-alias gstat='git status'
-alias gstsh='git stash'
-alias gpl='git pull'
-alias gplo='git pull origin master'
-alias gpu='git push'
-alias gpuo='git push origin master'
 
 venv() {
   if [ $# -gt 1 ]; then
