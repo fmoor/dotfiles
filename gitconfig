@@ -7,6 +7,7 @@
 	helper = cache --timeout=18000
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = vim
 [alias]
 	switch = !legit switch
 	sync = !legit sync
