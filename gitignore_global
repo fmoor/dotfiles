@@ -3,4 +3,6 @@
 .idea/
 .venv/
 .venv3/
+.vscode/
+.scratch/
 venv/
