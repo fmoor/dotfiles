@@ -23,6 +23,11 @@ call plug#end()
 syntax on
 color apprentice
 
+" netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 50
+
 set spelllang=en
 set spell
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
