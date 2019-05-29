@@ -20,6 +20,9 @@ Plug 'romainl/Apprentice'
 " provides linting hints for ESlint, Flow, etc.
 Plug 'w0rp/ale'
 
+" yaml
+Plug 'stephpy/vim-yaml'
+
 call plug#end()
 
 syntax on
