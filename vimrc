@@ -36,8 +36,10 @@ let g:netrw_winsize = 50
 
 set spelllang=en
 set spell
+set scrolloff=999
 
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType elixir setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType eelixir setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
