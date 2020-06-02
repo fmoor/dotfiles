@@ -49,7 +49,6 @@ eval "$(direnv hook bash)"  # requires 'apt install direnv'
 source ~/.bash_variables
 source ~/.bash_aliases
 source ~/.local/bin/prompt.sh
-source ~/.local/bin/auto-activate-virtualenv.sh
 
 # https://github.com/creationix/nvm
 export NVM_DIR="$HOME/.nvm"
