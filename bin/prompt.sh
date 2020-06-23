@@ -11,6 +11,17 @@ _parse_git_branch() {
 }
 
 
+_parse_venv() {
+    if [[ $VIRTUAL_ENV == *venv ]]; then
+      echo "($(basename $(dirname $VIRTUAL_ENV))) "
+    elif [[ -z $VIRTUAL_ENV ]]; then
+      echo ""
+    else
+      echo "($(basename $VIRTUAL_ENV)) "
+    fi
+}
+
+
 _exit_code() {
     local EXIT_CODE="$?"
 
@@ -33,7 +44,7 @@ _color_prompt() {
     local green='\[\033[01;32m\]'
     local white='\[\033[00m\]'
 
-    export PS1="${green}\u@\h${white}:${blue}\w ${red}$(_parse_git_branch) ${return_code} ${white}\n\$ "
+    export PS1="${white}$(_parse_venv)${green}\u@\h${white}:${blue}\w ${red}$(_parse_git_branch) ${return_code} ${white}\n\$ "
 }
 
 
