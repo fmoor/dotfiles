@@ -55,3 +55,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Somehow this function gets added to PROMPT_COMMAND
+# when a new shell is spawned in tmux :/
+# Put a dummy function here to stop the error message
+# that prints every time PROMPT_COMMAND executes.
+__vte_prompt_command() {
+    true;
+}
