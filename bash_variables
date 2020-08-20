@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export EDITOR=nano
-export PATH="$HOME/.node_modules_global/bin:$PATH"
+export PATH="$HOME/.node_modules_global/bin:$PATH:/opt/go/bin"
 export PYTHONDONTWRITEBYTECODE=true
 export PIPENV_VENV_IN_PROJECT=true
 export __LATEST_PYTHON__="python3.7"
