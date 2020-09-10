@@ -1,3 +1,5 @@
+/* ~/.gitignore_global */
+
 .envrc
 .nvmrc
 *.swp
