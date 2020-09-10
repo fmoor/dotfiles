@@ -8,12 +8,5 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = vim
-[alias]
-	switch = !legit switch
-	sync = !legit sync
-	publish = !legit publish
-	unpublish = !legit unpublish
-	undo = !legit undo
-	branches = !legit branches
 [push]
 	default = simple

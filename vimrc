@@ -102,10 +102,11 @@ autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 :set timeout timeoutlen=5000 ttimeoutlen=100
 
 " configure color scheme
+set t_ut= " https://superuser.com/a/562423
 syntax enable
 colorscheme tender
 let g:airline_theme = 'tender'
-if (has("termguicolors"))
- set termguicolors
+if exists('+termguicolors')
+	set termguicolors
 endif
 

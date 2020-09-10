@@ -2,10 +2,10 @@
 .nvmrc
 *.swp
 .idea/
+venv/
 .venv/
 .venv3/
 .vscode/
 .scratch/
-venv/
 .mypy_cache/
 gin-bin
