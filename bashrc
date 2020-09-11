@@ -64,12 +64,13 @@ export EDITOR=vim
 export PATH="$HOME/.node_modules_global/bin:$PATH:/opt/go/bin:$HOME/go/bin"
 export PYTHONDONTWRITEBYTECODE=true
 export PIPENV_VENV_IN_PROJECT=true
-export __LATEST_PYTHON__="python3.8"
+export __LATEST_PYTHON__="3.8"
 
 
 ###############
 ### aliases ###
 ###############
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -100,12 +101,18 @@ alias gd='git diff'
 alias gl='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)"'
 alias gs='git status'
 
+# vitrualenv commands
+alias va='source .venv/bin/activate'
+alias vd=deactivate
+alias vr='rm -rf .venv/'
+
 
 #################
 ### functions ###
 #################
 
-venv() {
+# create a virtualenv
+vc() {
   if [ $# -gt 1 ]; then
     echo "usage: venv [INTERPRETER]"
     echo "error: too many arguments"
@@ -117,17 +124,18 @@ venv() {
     INTERPRETER="$__LATEST_PYTHON__"
   fi
 
-  if [[ $INTERPRETER == python2* ]]; then
-    CMD="virtualenv -p $INTERPRETER .venv"
+  if [[ $INTERPRETER == 2* ]]; then
+    CMD="virtualenv -p python$INTERPRETER .venv"
   else
-    CMD="$INTERPRETER -m venv .venv"
+    CMD="python$INTERPRETER -m venv .venv"
   fi
 
   eval $CMD
-  pup
+  .venv/bin/pip install --upgrade pip setuptools
 }
 
 
+# the following functions are prompt related
 _git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
