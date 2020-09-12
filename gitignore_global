@@ -8,6 +8,6 @@ venv/
 .venv/
 .venv3/
 .vscode/
-.scratch/
+.ignore/
 .mypy_cache/
 gin-bin
