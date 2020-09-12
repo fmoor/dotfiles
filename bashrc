@@ -113,7 +113,7 @@ alias vr='rm -rf .venv/'
 
 # create a virtualenv
 vc() {
-  if [ $# -gt 1 ]; then
+  if [ "$#" -gt 1 ]; then
     echo "usage: venv [INTERPRETER]"
     echo "error: too many arguments"
     return 1
@@ -124,7 +124,7 @@ vc() {
     INTERPRETER="$__LATEST_PYTHON__"
   fi
 
-  if [[ $INTERPRETER == 2* ]]; then
+  if [ "$INTERPRETER" == 2* ]; then
     CMD="virtualenv -p python$INTERPRETER .venv"
   else
     CMD="python$INTERPRETER -m venv .venv"
@@ -137,15 +137,15 @@ vc() {
 
 # the following functions are prompt related
 _git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git rev-parse --abbrev-ref HEAD 2> /dev/null
 }
 
 
 _venv() {
-    if [[ $VIRTUAL_ENV == *venv ]]; then
-      echo "($(basename $(dirname $VIRTUAL_ENV))) "
-    elif [[ -z $VIRTUAL_ENV ]]; then
+    if [ -z "$VIRTUAL_ENV" ]; then
       echo ""
+    elif [ "$VIRTUAL_ENV" == *venv ]; then
+      echo "($(basename $(dirname $VIRTUAL_ENV))) "
     else
       echo "($(basename $VIRTUAL_ENV)) "
     fi
@@ -155,11 +155,8 @@ _venv() {
 _exit_code() {
     local EXIT_CODE="$?"
 
-    local red='\[\033[01;31m\]'
-    local white='\[\033[00m\]'
-
-    if [ ${EXIT_CODE} != 0 ]; then
-        echo "${red}✗ ${white}${EXIT_CODE}"
+    if [ "$EXIT_CODE" != 0 ]; then
+        echo "✗ $EXIT_CODE"
     else
         echo ""
     fi
@@ -167,14 +164,16 @@ _exit_code() {
 
 
 _prompt() {
-    local return_code=$(_exit_code)
+    local EXIT_CODE=$(_exit_code)
 
-    local red='\[\033[01;31m\]'
-    local blue='\[\033[01;34m\]'
-    local green='\[\033[01;32m\]'
-    local white='\[\033[00m\]'
+    local RED='\e[01;31m'
+    local GREEN='\e[01;32m'
+    local YELLOW='\e[01;33m'
+    local BLUE='\e[01;34m'
+    local WHITE='\e[00;37m'
+    local GRAY='\e[00;90m'
 
-    export PS1="${white}$(_venv)${green}\u@\h${white}:${blue}\w ${red}$(_git_branch) ${return_code} ${white}\n\$ "
+    export PS1="$WHITE$(_venv)$GREEN\u$YELLOW@$GREEN\h$WHITE:$BLUE\w $YELLOW$(_git_branch) $RED$EXIT_CODE $WHITE\n\$ "
 }
 
 
