@@ -54,14 +54,31 @@ call plug#begin('~/.vim/plugged')
 	Plug 'dense-analysis/ale'
 	let g:ale_fix_on_save = 1
 	let g:ale_fixers = {
-	\		'python': [
-	\			'add_blank_lines_for_python_control_statements',
-	\			'remove_trailing_lines',
-	\			'trim_whitespace',
-	\		],
-	\   'javascript': ['eslint'],
-	\		'jsx': ['eslint'],
-	\   'go': ['gofmt', 'goimports'],
+	\	'*': [
+	\		'remove_trailing_lines',
+	\		'trim_whitespace',
+	\	],
+	\	'python': [
+	\		'add_blank_lines_for_python_control_statements',
+	\		'remove_trailing_lines',
+	\		'trim_whitespace',
+	\	],
+	\ 'javascript': [
+	\		'eslint',
+	\		'remove_trailing_lines',
+	\		'trim_whitespace',
+	\	],
+	\	'jsx': [
+	\		'eslint',
+	\		'remove_trailing_lines',
+	\		'trim_whitespace',
+	\	],
+	\	'go': [
+	\		'gofmt',
+	\		'goimports',
+	\		'remove_trailing_lines',
+	\		'trim_whitespace',
+	\	],
 	\}
 	let g:ale_python_flake8_executable = $HOME . '/.vim/venv/bin/flake8'
 	let g:ale_python_mypy_executable = $HOME . '/.vim/venv/mypy'
@@ -96,8 +113,10 @@ set autowrite  " save file on certain actions
 set nobackup  " don't keep backup files
 set nowritebackup  " don't write backup files
 set spell  " enable spell checking
-set spelllang=en
+set spelllang=en_us
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType markdown setlocal wrap linebreak breakat&vim
+autocmd FileType text setlocal wrap linebreak breakat&vim
 
 " remove delay after typing Shift-o (insert line above)
 " https://github.com/vim/vim/issues/24#issuecomment-132350171
@@ -112,3 +131,6 @@ if exists('+termguicolors')
 	set termguicolors
 endif
 
+" keep this at the end of this file
+set exrc  " allow reading .vimrc file in current directory
+set secure  " disable unsafe cmds from .vimrc in current directory
