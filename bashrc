@@ -45,7 +45,7 @@ fi
 
 # initialize direnv
 # requires 'apt install direnv'
-eval "$(direnv hook bash)"  
+eval "$(direnv hook bash)"
 
 # load nvm
 # https://github.com/nvm-sh/nvm#install--update-script
@@ -136,45 +136,30 @@ vc() {
 
 
 # the following functions are prompt related
-_git_branch() {
-    git rev-parse --abbrev-ref HEAD 2> /dev/null
-}
-
-
-_venv() {
-    if [ -z "$VIRTUAL_ENV" ]; then
-      echo ""
-    elif [ "$VIRTUAL_ENV" == *venv ]; then
-      echo "($(basename $(dirname $VIRTUAL_ENV))) "
-    else
-      echo "($(basename $VIRTUAL_ENV)) "
-    fi
-}
-
-
-_exit_code() {
-    local EXIT_CODE="$?"
-
-    if [ "$EXIT_CODE" != 0 ]; then
-        echo "✗ $EXIT_CODE"
-    else
-        echo ""
-    fi
-}
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+source ~/.git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+export PROMPT_COMMAND="_prompt;$PROMPT_COMMAND"
 
 
 _prompt() {
-    local EXIT_CODE=$(_exit_code)
+    local EXIT_CODE="$?"
+    if [ "$EXIT_CODE" == 0 ]; then
+        EXIT_CODE=""
+    fi
+
+    local VENV=""
+    if [[ $VIRTUAL_ENV == *venv ]]; then
+        VENV="($(basename $(dirname $VIRTUAL_ENV))) "
+    elif [ ! -z "$VIRTUAL_ENV" ]; then
+        VENV="($(basename $VIRTUAL_ENV)) "
+    fi
 
     local RED='\e[01;31m'
     local GREEN='\e[01;32m'
     local YELLOW='\e[01;33m'
     local BLUE='\e[01;34m'
     local WHITE='\e[00;37m'
-    local GRAY='\e[00;90m'
 
-    export PS1="$WHITE$(_venv)$GREEN\u$YELLOW@$GREEN\h$WHITE:$BLUE\w $YELLOW$(_git_branch) $RED$EXIT_CODE $WHITE\n\$ "
+    export PS1="$WHITE$VENV$GREEN\u@\h$WHITE:$BLUE\w$YELLOW`__git_ps1 \" %s\"` $RED$EXIT_CODE$WHITE\n$ "
 }
-
-
-export PROMPT_COMMAND="_prompt;${PROMPT_COMMAND}"
