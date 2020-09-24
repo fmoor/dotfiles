@@ -24,11 +24,17 @@ endif
 
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
+"
+	" fuzzy finder
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+
 	" golang support
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	autocmd FileType go nmap <leader>b  <Plug>(go-build)
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
+	autocmd FileType go setlocal foldmethod=syntax
 
 	" A collection of language packs for Vim
 	Plug 'sheerun/vim-polyglot'
@@ -120,6 +126,9 @@ set spelllang=en_us
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType markdown setlocal wrap linebreak breakat&vim
 autocmd FileType text setlocal wrap linebreak breakat&vim
+
+" expand all folds when opening a file
+autocmd BufRead * normal zR
 
 " remove delay after typing Shift-o (insert line above)
 " https://github.com/vim/vim/issues/24#issuecomment-132350171
