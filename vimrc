@@ -16,7 +16,7 @@ endif
 " jedi used by maralla/completor.vim
 " linters used by dense-analysis/ale
 if empty(glob('~/.vim/venv/bin/python'))
-	silent !python3 -m venv ~/.vim/venv
+	silent !$__LATEST_PYTHON__ -m venv ~/.vim/venv
 	silent !~/.vim/venv/bin/pip install --upgrade pip setuptools
 	silent !~/.vim/venv/bin/pip install jedi flake8 mypy
 endif
@@ -24,11 +24,14 @@ endif
 
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
-
-	" A collection of language packs for Vim
-	Plug 'sheerun/vim-polyglot', { 'do': ':GoUpdateBinaries' }
+	" golang support
+	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	autocmd FileType go nmap <leader>b  <Plug>(go-build)
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
+	autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+	" A collection of language packs for Vim
+	Plug 'sheerun/vim-polyglot'
 
 	" comment out lines with gcc
 	Plug 'tpope/vim-commentary'
