@@ -31,6 +31,7 @@ call plug#begin('~/.vim/plugged')
 
 	" golang support
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+	let g:go_fmt_command = "gopls"  " fix https://github.com/fatih/vim-go/issues/502
 	autocmd FileType go nmap <leader>b  <Plug>(go-build)
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
@@ -41,6 +42,9 @@ call plug#begin('~/.vim/plugged')
 
 	" comment out lines with gcc
 	Plug 'tpope/vim-commentary'
+
+	" Insert or delete brackets, parens, quotes in pair
+	Plug 'jiangmiao/auto-pairs'
 
 	" mark git changes
 	Plug 'mhinz/vim-signify'
