@@ -100,7 +100,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'RRethy/vim-illuminate'
 	hi link illuminatedWord Visual
 	let g:Illuminate_delay = 150  " default 250
-	"
+
 	" fancy file explorer
 	Plug 'preservim/nerdtree'
 	let NERDTreeMinimalUI=1
