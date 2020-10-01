@@ -76,7 +76,7 @@ call plug#begin('~/.vim/plugged')
 	\		'remove_trailing_lines',
 	\		'trim_whitespace',
 	\	],
-	\ 'javascript': [
+	\	'javascript': [
 	\		'eslint',
 	\		'remove_trailing_lines',
 	\		'trim_whitespace',
