@@ -11,17 +11,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
-" automatically install;
-" jedi used by maralla/completor.vim
-" linters used by dense-analysis/ale
-if empty(glob('~/.vim/venv/bin/python'))
-	silent !$__LATEST_PYTHON__ -m venv ~/.vim/venv
-	silent !~/.vim/venv/bin/pip install --upgrade pip setuptools
-	silent !~/.vim/venv/bin/pip install jedi flake8 mypy
-endif
-
-
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 "
@@ -93,8 +82,6 @@ call plug#begin('~/.vim/plugged')
 	\		'trim_whitespace',
 	\	],
 	\}
-	let g:ale_python_flake8_executable = $HOME . '/.vim/venv/bin/flake8'
-	let g:ale_python_mypy_executable = $HOME . '/.vim/venv/mypy'
 
 	" highlight uses of word under cursor
 	Plug 'RRethy/vim-illuminate'
@@ -107,7 +94,11 @@ call plug#begin('~/.vim/plugged')
 	let NERDTreeShowHidden=1
 	command Ex NERDTree
 
-" Initialize plugin system
+	" mostly for yaml files
+	Plug 'Yggdroot/indentLine'
+	let g:indentLine_char_list = ['|', '┊']
+
+	" Initialize plugin system
 call plug#end()
 
 
@@ -130,6 +121,7 @@ set spelllang=en_us
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType markdown setlocal wrap linebreak breakat&vim
 autocmd FileType text setlocal wrap linebreak breakat&vim
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " expand all folds when opening a file
 autocmd BufRead * normal zR
