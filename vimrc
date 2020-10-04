@@ -116,6 +116,7 @@ set scrolloff=8  " leave n lines between the cursor and edge of screen
 set autowrite  " save file on certain actions
 set nobackup  " don't keep backup files
 set nowritebackup  " don't write backup files
+set cursorline  " highlight the current line
 set spell  " enable spell checking
 set spelllang=en_us
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
