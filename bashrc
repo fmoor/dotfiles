@@ -66,10 +66,6 @@ export PYTHONDONTWRITEBYTECODE=true
 export PIPENV_VENV_IN_PROJECT=true
 export __LATEST_PYTHON__="3.8"
 
-# for alacritty
-# https://stackoverflow.com/a/37578829
-export XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/
-
 
 ###############
 ### aliases ###
