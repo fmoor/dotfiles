@@ -16,6 +16,9 @@ env:
   # https://stackoverflow.com/a/37578829
   XDG_DATA_DIRS: "/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/"
 
+window:
+  decorations: none
+
 # https://github.com/huyvohcmc/tender-alacritty
 colors:
   # Default colors
