@@ -62,6 +62,7 @@ export NVM_DIR="$HOME/.nvm"
 #################
 export EDITOR=vim
 export PATH="$HOME/.node_modules_global/bin:$PATH:/usr/local/go/bin:$HOME/go/bin"
+export GOPATH="$HOME/.go"
 export PYTHONDONTWRITEBYTECODE=true
 export PIPENV_VENV_IN_PROJECT=true
 export __LATEST_PYTHON__="3.8"
