@@ -26,6 +26,9 @@ call plug#begin('~/.vim/plugged')
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go setlocal foldmethod=syntax
 
+	" python code formatting
+	Plug 'psf/black', { 'branch': 'stable'  }
+
 	" A collection of language packs for Vim
 	Plug 'sheerun/vim-polyglot'
 
