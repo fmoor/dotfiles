@@ -97,11 +97,7 @@ call plug#begin('~/.vim/plugged')
 	let NERDTreeShowHidden=1
 	command Ex NERDTree
 
-	" mostly for yaml files
-	Plug 'Yggdroot/indentLine'
-	let g:indentLine_char_list = ['|', '┊']
-
-	" Initialize plugin system
+" Initialize plugin system
 call plug#end()
 
 
