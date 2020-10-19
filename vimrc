@@ -24,7 +24,11 @@ call plug#begin('~/.vim/plugged')
 	autocmd FileType go nmap <leader>b  <Plug>(go-build)
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
+	autocmd FileType go nmap <leader>e	:GoIfErr<CR>
 	autocmd FileType go setlocal foldmethod=syntax
+
+	" edgedb syntax highlighting
+	Plug 'edgedb/edgedb-vim'
 
 	" python code formatting
 	Plug 'psf/black', { 'branch': 'stable'  }
