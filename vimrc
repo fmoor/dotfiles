@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go nmap <leader>e	:GoIfErr<CR>
+	autocmd FileType go nmap <leader>n  :GoRename<CR>
 	autocmd FileType go setlocal foldmethod=syntax
 
 	" edgedb syntax highlighting
@@ -68,7 +69,6 @@ call plug#begin('~/.vim/plugged')
 	\		'trim_whitespace',
 	\	],
 	\	'python': [
-	\		'add_blank_lines_for_python_control_statements',
 	\		'remove_trailing_lines',
 	\		'trim_whitespace',
 	\	],
