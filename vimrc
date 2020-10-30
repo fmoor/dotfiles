@@ -20,13 +20,11 @@ call plug#begin('~/.vim/plugged')
 
 	" golang support
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-	let g:go_fmt_command = "gopls"  " fix https://github.com/fatih/vim-go/issues/502
 	autocmd FileType go nmap <leader>b  <Plug>(go-build)
 	autocmd FileType go nmap <leader>r  <Plug>(go-run)
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go nmap <leader>e	:GoIfErr<CR>
 	autocmd FileType go nmap <leader>n  :GoRename<CR>
-	autocmd FileType go setlocal foldmethod=syntax
 
 	" edgedb syntax highlighting
 	Plug 'edgedb/edgedb-vim'
