@@ -25,6 +25,14 @@ call plug#begin('~/.vim/plugged')
 	autocmd FileType go nmap <leader>t  <Plug>(go-test)
 	autocmd FileType go nmap <leader>e	:GoIfErr<CR>
 	autocmd FileType go nmap <leader>n  :GoRename<CR>
+	let g:go_fmt_command = "goimports"
+	let g:go_fmt_fail_silently = 1
+
+	" split/join one line to many gS & gJ
+	Plug 'AndrewRadev/splitjoin.vim'
+
+	" SirVer/ultisnips
+	Plug 'SirVer/ultisnips'
 
 	" edgedb syntax highlighting
 	Plug 'edgedb/edgedb-vim'
@@ -43,6 +51,18 @@ call plug#begin('~/.vim/plugged')
 
 	" mark git changes
 	Plug 'mhinz/vim-signify'
+
+	" highlight uses of word under cursor
+	Plug 'RRethy/vim-illuminate'
+	let g:Illuminate_delay = 150  " default 250
+	augroup illuminate_augroup
+			autocmd!
+			autocmd VimEnter * hi illuminatedCurWord cterm=italic gui=italic
+			autocmd VimEnter * hi illuminatedWord
+				\ term=reverse
+				\ cterm=italic ctermbg=237
+				\ gui=italic guibg=#293b44
+	augroup END
 
 	" colors
 	Plug 'jacoborus/tender.vim'
@@ -87,11 +107,6 @@ call plug#begin('~/.vim/plugged')
 	\		'trim_whitespace',
 	\	],
 	\}
-
-	" highlight uses of word under cursor
-	Plug 'RRethy/vim-illuminate'
-	hi link illuminatedWord Visual
-	let g:Illuminate_delay = 150  " default 250
 
 	" fancy file explorer
 	Plug 'preservim/nerdtree'
