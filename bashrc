@@ -142,7 +142,12 @@ vc() {
 # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
 source ~/.git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
-export PROMPT_COMMAND="_prompt;$PROMPT_COMMAND"
+
+# when sourced multiple times only add the prompt command once.
+# adding it multiple times breaks displaying the error code
+if [[ "$PROMPT_COMMAND" != *"_prompt"* ]]; then
+    export PROMPT_COMMAND="_prompt;$PROMPT_COMMAND"
+fi
 
 
 _prompt() {
