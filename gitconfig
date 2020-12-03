@@ -3,6 +3,7 @@
 [user]
 	name = fmoor
 	email = fmoor@gmx.com
+	signingkey = D77B84D19E499124
 [pull]
 	rebase = true
 [credential]

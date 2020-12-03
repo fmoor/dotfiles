@@ -62,6 +62,7 @@ export NVM_DIR="$HOME/.nvm"
 #################
 export EDITOR=vim
 export GOPATH="$HOME/.go"
+export GPG_TTY=$(tty)
 export PATH="$HOME/.node_modules_global/bin:$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.edgedb/bin"
 export PYTHONDONTWRITEBYTECODE=true
 export PIPENV_VENV_IN_PROJECT=true
