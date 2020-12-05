@@ -115,6 +115,12 @@ alias vr='rm -rf .venv/'
 ### functions ###
 #################
 
+# mkdir && cd
+mcd() {
+    mkdir -p -- "$1"
+    cd -P -- "$1"
+}
+
 # create a virtualenv
 vc() {
   if [ "$#" -gt 1 ]; then
