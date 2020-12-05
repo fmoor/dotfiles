@@ -57,8 +57,8 @@ call plug#begin('~/.vim/plugged')
 	let g:Illuminate_delay = 150  " default 250
 	augroup illuminate_augroup
 			autocmd!
-			autocmd VimEnter * hi illuminatedCurWord cterm=italic gui=italic
-			autocmd VimEnter * hi illuminatedWord
+			autocmd VimEnter * highlight illuminatedCurWord cterm=italic gui=italic
+			autocmd VimEnter * highlight illuminatedWord
 				\ term=reverse
 				\ cterm=italic ctermbg=237
 				\ gui=italic guibg=#293b44
@@ -135,6 +135,8 @@ set nowritebackup  " don't write backup files
 set cursorline  " highlight the current line
 set spell  " enable spell checking
 set spelllang=en_us
+set relativenumber " Relative line numbers on left.
+set number " in combination with relativenumber, we get 'hybrid mode' that has the current linenumber on your current row position (instead of the default '0')
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType markdown setlocal wrap linebreak breakat&vim
 autocmd FileType text setlocal wrap linebreak breakat&vim
@@ -157,6 +159,9 @@ if exists('+termguicolors')
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 	set termguicolors
 endif
+
+highlight LineNr ctermfg=153 guifg=#b3deef
+highlight CursorLineNr ctermfg=215 guifg=#ffc24b
 
 " keep this at the end of this file
 set exrc  " allow reading .vimrc file in current directory
