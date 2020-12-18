@@ -142,6 +142,8 @@ autocmd FileType markdown setlocal wrap linebreak breakat&vim
 autocmd FileType text setlocal wrap linebreak breakat&vim
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+autocmd BufNewFile,BufRead .envrc setfiletype bash
+
 " expand all folds when opening a file
 autocmd BufRead * normal zR
 
