@@ -93,7 +93,7 @@ alias pup='pip install --upgrade pip setuptools'
 alias cb='xclip -sel clip'
 alias ydlmp3='youtube-dl --extract-audio --audio-format mp3'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
-alias beep='paplay /usr/share/sounds/ubuntu/notifications/Positive.ogg'
+alias beep='paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
