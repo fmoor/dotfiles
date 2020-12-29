@@ -15,3 +15,5 @@
 	default = simple
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+[hooks "confirm"]  # https://github.com/pimterry/git-confirm
+	match = [Tt][Oo][Dd][Oo]\\|[Ff][Ii][Xx][Mm][Ee]
