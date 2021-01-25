@@ -95,10 +95,6 @@ alias ydlmp3='youtube-dl --extract-audio --audio-format mp3'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
 alias beep='paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; beep'
-
 # Git Commands
 alias ga='git add'
 alias gd='git diff'
@@ -114,6 +110,15 @@ alias vr='rm -rf .venv/'
 #################
 ### functions ###
 #################
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alert() {
+    local EXIT_CODE=$?
+    notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history | tail -n 1 | sed 's/[0-9]//g')"
+    beep
+    return $EXIT_CODE
+}
 
 # mkdir && cd
 mcd() {
@@ -178,3 +183,4 @@ _prompt() {
 
     export PS1="$WHITE$VENV$GREEN\u@\h$WHITE:$BLUE\w$YELLOW`__git_ps1 \" %s\"` $RED$EXIT_CODE$WHITE\n$ "
 }
+source "$HOME/.cargo/env"
