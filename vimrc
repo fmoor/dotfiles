@@ -141,6 +141,7 @@ autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType markdown setlocal wrap linebreak breakat&vim
 autocmd FileType text setlocal wrap linebreak breakat&vim
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2 noexpandtab
 
 autocmd BufNewFile,BufRead .envrc setfiletype bash
 
