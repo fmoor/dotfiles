@@ -60,6 +60,7 @@ export NVM_DIR="$HOME/.nvm"
 #################
 ### variables ###
 #################
+export BAT_THEME=Nord
 export EDITOR=vim
 export GOPATH="$HOME/.go"
 export GPG_TTY=$(tty)
@@ -86,7 +87,7 @@ fi
 
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -CF1'
 alias bb=byobu
 alias uu='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
 alias pup='pip install --upgrade pip setuptools'
@@ -94,6 +95,7 @@ alias cb='xclip -sel clip'
 alias ydlmp3='youtube-dl --extract-audio --audio-format mp3'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
 alias beep='paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
+alias vim='nvim'
 
 # Git Commands
 alias ga='git add'

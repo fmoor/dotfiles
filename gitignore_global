@@ -3,6 +3,7 @@
 .envrc
 .nvmrc
 .vimrc
+.nvimrc
 *.swp
 .idea/
 venv/

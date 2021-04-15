@@ -10,7 +10,7 @@
 	helper = cache --timeout=18000
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = vim
+	editor = nvim
 [push]
 	default = simple
 [url "ssh://git@github.com/"]
