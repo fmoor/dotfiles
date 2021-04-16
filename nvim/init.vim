@@ -1,3 +1,9 @@
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 let mapleader = ";"
 
 
@@ -148,6 +154,7 @@ call plug#end()
 """"""""""""""""""""""""
 " Plugin configuration "
 """"""""""""""""""""""""
+let g:python3_host_prog = '/home/fmoor/src/dotfiles/nvim/.venv/bin/python'
 lua << EOF
 require('statusline')
 
