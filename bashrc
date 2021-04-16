@@ -55,6 +55,11 @@ export NVM_DIR="$HOME/.nvm"
 
 # load fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:#eceff4,bg:#2e3440,hl:#81a1c1
+  --color=fg+:#eceff4,bg+:#2e3440,hl+:#88c0d0
+  --color=info:#ebcb8b,prompt:#bf616a,pointer:#d08770
+  --color=marker:#a3be8c,spinner:#d8dee9,header:#b48ead'
 
 
 #################
