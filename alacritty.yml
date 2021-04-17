@@ -33,7 +33,7 @@ font:
     family: UbuntuMono Nerd Font Mono
     style: Bold Italic
 
-  size: 12
+  size: 13
 
 # https://github.com/arcticicestudio/nord-alacritty
 colors:
