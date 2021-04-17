@@ -154,13 +154,22 @@ call plug#end()
 """"""""""""""""""""""""
 " Plugin configuration "
 """"""""""""""""""""""""
-let g:python3_host_prog = '/home/fmoor/src/dotfiles/nvim/.venv/bin/python'
+let g:python3_host_prog = '/home/fmoor/.neovim-venv/bin/python'
+
 lua << EOF
 require('statusline')
-
 local lspconf = require('lspconfig')
 
 lspconf.gopls.setup{}
+
+-- install deno https://github.com/denoland/deno
+lspconf.denols.setup{
+	init_options = {
+		enable = true,
+		lint = true,
+		unstable = false,
+	}
+}
 
 -- pip install python-language-server[all] pyls-mypy
 lspconf.pyls.setup{settings = {pyls = {plugins = {
