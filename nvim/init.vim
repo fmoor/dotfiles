@@ -161,6 +161,8 @@ require('statusline')
 local lspconf = require('lspconfig')
 
 lspconf.gopls.setup{}
+lspconf.rust_analyzer.setup{}
+lspconf.html.setup{}
 
 -- install deno https://github.com/denoland/deno
 lspconf.denols.setup{
