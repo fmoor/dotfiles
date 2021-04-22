@@ -39,6 +39,8 @@ call plug#begin(stdpath('data') . '/plugged')
 	nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<cr>
 	nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<cr>
 	nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<cr>
+	nnoremap <silent> gs    <cmd>lua vim.lsp.buf.document_symbol()<cr>
+	nnoremap <silent> gS    <cmd>lua vim.lsp.buf.workspace_symbol()<cr>
 	nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<cr>
 	nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<cr>
 	nnoremap <silent> rn    <cmd>lua vim.lsp.buf.rename()<cr>
