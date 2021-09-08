@@ -65,11 +65,15 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 #################
 ### variables ###
 #################
+# for the Nord theme to be available in bat:
+# git clone git@github.com:sharkdp/bat.git
+# cargo install --locked bat
 export BAT_THEME=Nord
-export EDITOR=vim
+export BAT_STYLE=changes
+export EDITOR=nvim
 export GOPATH="$HOME/.go"
 export GPG_TTY=$(tty)
-export PATH="$HOME/.node_modules_global/bin:$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.edgedb/bin"
+export PATH="$HOME/.node_modules_global/bin:$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.edgedb/bin:/home/fmoor/.local/share/gem/ruby/2.7.0/bin"
 export PYTHONDONTWRITEBYTECODE=true
 export PIPENV_VENV_IN_PROJECT=true
 export __LATEST_PYTHON__="3.8"
@@ -100,7 +104,6 @@ alias cb='xclip -sel clip'
 alias ydlmp3='youtube-dl --extract-audio --audio-format mp3'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
 alias beep='paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
-alias vim='nvim'
 
 # Git Commands
 alias ga='git add'

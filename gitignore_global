@@ -11,6 +11,7 @@ venv/
 .venv/
 .venv3/
 .vscode/
+.direnv/
 .ignore/
 .mypy_cache/
 gin-bin

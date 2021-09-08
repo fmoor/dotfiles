@@ -1,170 +1,145 @@
-" ~/.vimrc
+let mapleader=";"
 
-""""""""""""""""""""""""
-""" vim-plug section """
-""""""""""""""""""""""""
-
-" automatically install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" auto install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Specify a directory for plugins
+
 call plug#begin('~/.vim/plugged')
-"
-	" fuzzy finder
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
-
-	" golang support
-	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-	autocmd FileType go nmap <leader>b  <Plug>(go-build)
-	autocmd FileType go nmap <leader>r  <Plug>(go-run)
-	autocmd FileType go nmap <leader>t  <Plug>(go-test)
-	autocmd FileType go nmap <leader>e	:GoIfErr<CR>
-	autocmd FileType go nmap <leader>n  :GoRename<CR>
-	let g:go_fmt_command = "goimports"
-	let g:go_fmt_fail_silently = 1
-
-	" split/join one line to many gS & gJ
-	Plug 'AndrewRadev/splitjoin.vim'
-
-	" SirVer/ultisnips
-	Plug 'SirVer/ultisnips'
-
-	" edgedb syntax highlighting
-	Plug 'edgedb/edgedb-vim'
-
-	" python code formatting
-	Plug 'psf/black', { 'branch': 'stable'  }
-
-	" A collection of language packs for Vim
-	Plug 'sheerun/vim-polyglot'
-
-	" comment out lines with gcc
-	Plug 'tpope/vim-commentary'
-
-	" Insert or delete brackets, parens, quotes in pair
 	Plug 'jiangmiao/auto-pairs'
-
-	" mark git changes
-	Plug 'mhinz/vim-signify'
-
-	" highlight uses of word under cursor
-	Plug 'RRethy/vim-illuminate'
-	let g:Illuminate_delay = 150  " default 250
-	augroup illuminate_augroup
-			autocmd!
-			autocmd VimEnter * highlight illuminatedCurWord cterm=italic gui=italic
-			autocmd VimEnter * highlight illuminatedWord
-				\ term=reverse
-				\ cterm=italic ctermbg=237
-				\ gui=italic guibg=#293b44
-	augroup END
-
-	" colors
-	Plug 'jacoborus/tender.vim'
-
-	" status line
-	Plug 'vim-airline/vim-airline'
-
-	" code completion
-	Plug 'maralla/completor.vim', { 'dir': '~/.vim/plugged/completor.vim/pythonx/completers/javascript', 'do': 'make js'}
-	let g:completor_python_binary = $HOME . '/.vim/venv/bin/python'
-	let g:completor_filetype_map = {'go': {'ft': 'lsp', 'cmd': 'gopls'}}
-	inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-	inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-	" linting support
-	Plug 'dense-analysis/ale'
-	let g:ale_fix_on_save = 1
-	let g:ale_fixers = {
-	\	'*': [
-	\		'remove_trailing_lines',
-	\		'trim_whitespace',
-	\	],
-	\	'python': [
-	\		'remove_trailing_lines',
-	\		'trim_whitespace',
-	\	],
-	\	'javascript': [
-	\		'eslint',
-	\		'remove_trailing_lines',
-	\		'trim_whitespace',
-	\	],
-	\	'jsx': [
-	\		'eslint',
-	\		'remove_trailing_lines',
-	\		'trim_whitespace',
-	\	],
-	\	'go': [
-	\		'gofmt',
-	\		'goimports',
-	\		'remove_trailing_lines',
-	\		'trim_whitespace',
-	\	],
-	\}
-
-	" fancy file explorer
-	Plug 'preservim/nerdtree'
-	let NERDTreeMinimalUI=1
-	let NERDTreeShowHidden=1
-	command Ex NERDTree
-
-" Initialize plugin system
+	Plug 'tpope/vim-commentary'  " comment out lines with gcc
+	Plug 'arcticicestudio/nord-vim'  " color scheme
+	Plug 'SirVer/ultisnips'
+	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+	Plug 'evanleck/vim-svelte', {'branch': 'main'}
+	Plug 'edgedb/edgedb-vim'
+	Plug 'aliou/bats.vim'
+	Plug 'FooSoft/vim-argwrap'
 call plug#end()
 
-
-""""""""""""""""
-""" settings """
-""""""""""""""""
-set nowrap  " don't wrap long lines
-set tabstop=2  " a tab is 2 spaces
-set softtabstop=2  " number of spaces to remove on <BS>
-set noexpandtab  " don't replace tabs with spaces
-set shiftwidth=2  " number of spaces for autoindenting
-set shiftround  " indent rounded to shiftwidth
-set autoindent  " preserve indentation on next line
-set scrolloff=8  " leave n lines between the cursor and edge of screen
 set autowrite  " save file on certain actions
-set nobackup  " don't keep backup files
-set nowritebackup  " don't write backup files
+set autoread  " reload the buffer if the file on disk changed
 set cursorline  " highlight the current line
+set scrolloff=8  " leave n lines between the cursor and edge of screen
 set spell  " enable spell checking
 set spelllang=en_us
 set relativenumber " Relative line numbers on left.
-set number " in combination with relativenumber, we get 'hybrid mode' that has the current linenumber on your current row position (instead of the default '0')
-autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-autocmd FileType markdown setlocal wrap linebreak breakat&vim
-autocmd FileType text setlocal wrap linebreak breakat&vim
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType javascript setlocal ts=2 sts=2 sw=2 noexpandtab
+set number " hybrid mode relative number
+set timeoutlen=1000
+set ttimeoutlen=10
+set hidden " Required for language server operations
+set hlsearch " highlight search results
+set encoding=utf-8
+set directory=~/.vimswap//
+set backupdir=~/.vimbackup//
+set tabstop=2  " a tab is 2 spaces
+set softtabstop=2  " number of spaces to remove on <BS>
+set shiftwidth=2  " number of spaces for auto indenting
+set noexpandtab  " don't replace tabs with spaces
+set sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize"
+set updatetime=300
 
-autocmd BufNewFile,BufRead .envrc setfiletype bash
+set laststatus=2
+set statusline=
+set statusline +=%1*\ %n\ %*            "buffer number
+set statusline +=%5*%{&ff}%*            "file format
+set statusline +=%3*%y%*                "file type
+set statusline +=%4*\ %<%F%*            "full path
+set statusline +=%2*%m%*                "modified flag
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%2*0x%04B\ %*          "character under cursor
 
-" expand all folds when opening a file
-autocmd BufRead * normal zR
+" not sure this is working :/
+autocmd FocusGained,FocusLost,BufEnter,BufLeave * checktime
 
-" remove delay after typing Shift-o (insert line above)
-" https://github.com/vim/vim/issues/24#issuecomment-132350171
-:set timeout timeoutlen=5000 ttimeoutlen=100
+" may be overridden in ftplugin files
+nmap <buffer> <silent> gm <Plug>(coc-menu)
+nmap <buffer> <silent> K <Plug>(coc-hover)
+nmap <buffer> <silent> gd <Plug>(coc-definition)
+nmap <buffer> <silent> gi <Plug>(coc-implementation)
+nmap <buffer> <silent> 1gD <Plug>(coc-type-definition)
+nmap <buffer> <silent> gr <Plug>(coc-references)
+nmap <buffer> <silent> gs <Plug>(coc-symbols)
+nmap <buffer> <silent> rn <Plug>(coc-rename)
+nmap <buffer> <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <buffer> <silent> ]d <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>a :ArgWrap<CR>
 
-" configure color scheme
-set t_ut= " https://superuser.com/a/562423
-syntax enable
-colorscheme tender
-let g:airline_theme = 'tender'
+" add relative line numbers to netrw
+let g:netrw_bufsettings="noma nomod nonu nobl nowrap ro rnu"
+
+filetype plugin on
+
+" Nord customization's must come before the colorscheme command
+let g:nord_cursor_line_number_background = 1
+augroup nord-theme-overrides
+  autocmd!
+
+	" make line number offsets brighter
+  autocmd ColorScheme nord highlight LineNr ctermfg=5 guifg=#b48ead
+augroup END
+
+colorscheme nord
+
 if exists('+termguicolors')
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-	set termguicolors
+  set termguicolors
 endif
 
-highlight LineNr ctermfg=153 guifg=#b3deef
-highlight CursorLineNr ctermfg=215 guifg=#ffc24b
+" Customize fzf colors to match Nord
+let g:fzf_colors = {
+	\ 'fg':      ['fg', 'Normal'],
+	\ 'bg':      ['bg', 'Normal'],
+	\ 'hl':      ['fg', 'Comment'],
+	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+	\ 'hl+':     ['fg', 'Statement'],
+	\ 'info':    ['fg', 'PreProc'],
+	\ 'border':  ['fg', 'Ignore'],
+	\ 'prompt':  ['fg', 'Conditional'],
+	\ 'pointer': ['fg', 'Exception'],
+	\ 'marker':  ['fg', 'Keyword'],
+	\ 'spinner': ['fg', 'Label'],
+	\ 'header':  ['fg', 'Comment'],
+	\}
+
+" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions
+let g:coc_global_extensions = [
+	\ 'coc-elixir',
+	\ 'coc-esbonio',
+	\ 'coc-cmake',
+	\ 'coc-css',
+	\ 'coc-cssmodules',
+	\ 'coc-git',
+	\ 'coc-go',
+	\ 'coc-highlight',
+	\ 'coc-html',
+	\ 'coc-htmlhint',
+	\ 'coc-json',
+	\ 'coc-markdownlint',
+	\ 'coc-prettier',
+	\ 'coc-rust-analyzer',
+	\ 'coc-stylelint',
+	\ 'coc-stylelintplus',
+	\ 'coc-sh',
+	\ 'coc-snippets',
+	\ 'coc-sql',
+	\ 'coc-svelte',
+	\ 'coc-toml',
+	\ 'coc-tsserver',
+	\ 'coc-vimlsp',
+	\ 'coc-xml',
+	\ 'coc-yaml',
+	\ ]
 
 " keep this at the end of this file
 set exrc  " allow reading .vimrc file in current directory

@@ -11,6 +11,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
+	commentChar = ";"
 [push]
 	default = simple
 [hooks "confirm"]  # https://github.com/pimterry/git-confirm

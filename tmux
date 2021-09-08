@@ -3,7 +3,7 @@
 
 # https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
 set -g default-terminal "tmux-256color"
-set -ag terminal-overrides ",xterm-256color:RGB"
+set -ag terminal-overrides ",*256col*:Tc"
 
 # hide the status bar
 set -g status off

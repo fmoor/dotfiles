@@ -1,0 +1,9 @@
+# ~/.config/direnv/direnvrc
+# https://github.com/direnv/direnv
+
+use_nvm() {
+	watch_file .nvmrc
+	source "$HOME/.nvm/nvm.sh"
+	nvm use
+	layout node
+}
