@@ -20,7 +20,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'evanleck/vim-svelte', {'branch': 'main'}
 	Plug 'edgedb/edgedb-vim'
 	Plug 'aliou/bats.vim'
-	Plug 'FooSoft/vim-argwrap'
+	Plug 'AndrewRadev/splitjoin.vim'
 call plug#end()
 
 set autowrite  " save file on certain actions
@@ -71,7 +71,12 @@ nmap <buffer> <silent> gs <Plug>(coc-symbols)
 nmap <buffer> <silent> rn <Plug>(coc-rename)
 nmap <buffer> <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <buffer> <silent> ]d <Plug>(coc-diagnostic-next)
-nnoremap <silent> <leader>a :ArgWrap<CR>
+nmap <leader>j :SplitjoinJoin<CR>
+nmap <leader>s :SplitjoinSplit<CR>
+
+" don't use splitjoin's default mappings
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
 
 " add relative line numbers to netrw
 let g:netrw_bufsettings="noma nomod nonu nobl nowrap ro rnu"
