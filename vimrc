@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'edgedb/edgedb-vim'
 	Plug 'aliou/bats.vim'
 	Plug 'AndrewRadev/splitjoin.vim'
+	Plug 'FooSoft/vim-argwrap'
 call plug#end()
 
 set autowrite  " save file on certain actions
@@ -71,6 +72,7 @@ nmap <buffer> <silent> gs <Plug>(coc-symbols)
 nmap <buffer> <silent> rn <Plug>(coc-rename)
 nmap <buffer> <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <buffer> <silent> ]d <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>a :ArgWrap<CR>
 nmap <leader>j :SplitjoinJoin<CR>
 nmap <leader>s :SplitjoinSplit<CR>
 
