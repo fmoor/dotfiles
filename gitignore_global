@@ -5,6 +5,7 @@
 .nvmrc
 .vimrc
 .nvimrc
+.tool-versions
 *.swp
 .idea/
 venv/

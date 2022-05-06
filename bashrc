@@ -69,7 +69,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 # git clone git@github.com:sharkdp/bat.git
 # cargo install --locked bat
 export BAT_THEME=Nord
-export BAT_STYLE=changes
+export BAT_STYLE=plain
 export EDITOR=nvim
 export GOPATH="$HOME/.go"
 export GPG_TTY=$(tty)
@@ -193,4 +193,7 @@ _prompt() {
 
     export PS1="$WHITE$VENV$GREEN\u@\h$WHITE:$BLUE\w$YELLOW`__git_ps1 \" %s\"` $RED$EXIT_CODE$WHITE\n$ "
 }
+source "$HOME/.asdf/asdf.sh"
+source "$HOME/.asdf/completions/asdf.bash"
 source "$HOME/.cargo/env"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"

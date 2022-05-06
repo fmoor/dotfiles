@@ -19,9 +19,12 @@ call plug#begin('~/.vim/plugged')
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	Plug 'evanleck/vim-svelte', {'branch': 'main'}
 	Plug 'edgedb/edgedb-vim'
+	Plug 'elixir-editors/vim-elixir'
 	Plug 'aliou/bats.vim'
 	Plug 'AndrewRadev/splitjoin.vim'
 	Plug 'FooSoft/vim-argwrap'
+	Plug 'stevearc/vim-arduino'
+	Plug 'hashivim/vim-terraform'
 call plug#end()
 
 set autowrite  " save file on certain actions
@@ -75,6 +78,8 @@ nmap <buffer> <silent> ]d <Plug>(coc-diagnostic-next)
 nnoremap <silent> <leader>a :ArgWrap<CR>
 nmap <leader>j :SplitjoinJoin<CR>
 nmap <leader>s :SplitjoinSplit<CR>
+nmap <leader>f <Plug>(coc-format)
+imap <C-l> <Plug>(coc-snippets-expand)
 
 " don't use splitjoin's default mappings
 let g:splitjoin_split_mapping = ''
