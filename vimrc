@@ -25,6 +25,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'FooSoft/vim-argwrap'
 	Plug 'stevearc/vim-arduino'
 	Plug 'hashivim/vim-terraform'
+	Plug 'rust-lang/rust.vim'
+	Plug 'prettier/vim-prettier', {
+		\ 'do': 'yarn install --frozen-lockfile --production',
+		\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 call plug#end()
 
 set autowrite  " save file on certain actions
@@ -42,10 +46,10 @@ set hlsearch " highlight search results
 set encoding=utf-8
 set directory=~/.vimswap//
 set backupdir=~/.vimbackup//
-set tabstop=2  " a tab is 2 spaces
-set softtabstop=2  " number of spaces to remove on <BS>
-set shiftwidth=2  " number of spaces for auto indenting
-set noexpandtab  " don't replace tabs with spaces
+set tabstop=4  " a tab is 2 spaces
+set softtabstop=4  " number of spaces to remove on <BS>
+set shiftwidth=4  " number of spaces for auto indenting
+set expandtab
 set sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize"
 set updatetime=300
 
@@ -80,6 +84,9 @@ nmap <leader>j :SplitjoinJoin<CR>
 nmap <leader>s :SplitjoinSplit<CR>
 nmap <leader>f <Plug>(coc-format)
 imap <C-l> <Plug>(coc-snippets-expand)
+
+" configure vim-terraform
+let g:terraform_fmt_on_save = 1
 
 " don't use splitjoin's default mappings
 let g:splitjoin_split_mapping = ''
@@ -126,11 +133,11 @@ let g:fzf_colors = {
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions
 let g:coc_global_extensions = [
-	\ 'coc-elixir',
-	\ 'coc-esbonio',
 	\ 'coc-cmake',
 	\ 'coc-css',
 	\ 'coc-cssmodules',
+	\ 'coc-elixir',
+	\ 'coc-esbonio',
 	\ 'coc-git',
 	\ 'coc-go',
 	\ 'coc-highlight',
@@ -139,12 +146,13 @@ let g:coc_global_extensions = [
 	\ 'coc-json',
 	\ 'coc-markdownlint',
 	\ 'coc-prettier',
+	\ 'coc-pyright',
 	\ 'coc-rust-analyzer',
-	\ 'coc-stylelint',
-	\ 'coc-stylelintplus',
 	\ 'coc-sh',
 	\ 'coc-snippets',
 	\ 'coc-sql',
+	\ 'coc-stylelint',
+	\ 'coc-stylelintplus',
 	\ 'coc-svelte',
 	\ 'coc-toml',
 	\ 'coc-tsserver',
