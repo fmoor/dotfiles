@@ -95,6 +95,10 @@ let g:splitjoin_join_mapping = ''
 " add relative line numbers to netrw
 let g:netrw_bufsettings="noma nomod nonu nobl nowrap ro rnu"
 
+" prettier
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+
 filetype plugin on
 
 " Nord customization's must come before the colorscheme command
