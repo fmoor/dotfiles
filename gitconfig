@@ -10,7 +10,7 @@
 	helper = cache --timeout=18000
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = nvim
+	editor = vim
 	commentChar = ";"
 [push]
 	default = simple
@@ -18,3 +18,5 @@
 	match = [Tt][Oo][Dd][Oo]\\|[Ff][Ii][Xx][Mm][Ee]
 [init]
 	defaultBranch = main
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

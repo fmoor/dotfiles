@@ -26,9 +26,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'stevearc/vim-arduino'
 	Plug 'hashivim/vim-terraform'
 	Plug 'rust-lang/rust.vim'
-	Plug 'prettier/vim-prettier', {
-		\ 'do': 'yarn install --frozen-lockfile --production',
-		\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+	" Plug 'prettier/vim-prettier', {
+	" 	\ 'do': 'yarn install --frozen-lockfile --production',
+	" 	\ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 call plug#end()
 
 set autowrite  " save file on certain actions
@@ -100,6 +100,10 @@ let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 
 filetype plugin on
+augroup envrc_ft
+  au!
+  autocmd BufNewFile,BufRead .envrc set filetype=bash
+augroup END
 
 " Nord customization's must come before the colorscheme command
 let g:nord_cursor_line_number_background = 1

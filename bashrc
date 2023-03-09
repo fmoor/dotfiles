@@ -70,10 +70,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 # cargo install --locked bat
 export BAT_THEME=Nord
 export BAT_STYLE=plain
-export EDITOR=nvim
+export EDITOR=vim
 export GOPATH="$HOME/.go"
 export GPG_TTY=$(tty)
-export PATH="$HOME/.node_modules_global/bin:$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.edgedb/bin:/home/fmoor/.local/share/gem/ruby/2.7.0/bin"
+export PATH="$HOME/.node_modules_global/bin:$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/.local/bin:/home/fmoor/.local/share/gem/ruby/2.7.0/bin"
 export PYTHONDONTWRITEBYTECODE=true
 export PIPENV_VENV_IN_PROJECT=true
 export __LATEST_PYTHON__="3.8"
@@ -99,7 +99,7 @@ alias la='ls -A'
 alias l='ls -CF1'
 alias bb=byobu
 alias uu='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
-alias pup='pip install --upgrade pip setuptools'
+alias pup='pip install --upgrade pip setuptools wheel'
 alias cb='xclip -sel clip'
 alias ydlmp3='youtube-dl --extract-audio --audio-format mp3'
 alias gpg-e='gpg --encrypt --sign --armor -r fmoor@gmx.com'
@@ -125,7 +125,7 @@ alias vr='rm -rf .venv/'
 #   sleep 10; alert
 alert() {
     local EXIT_CODE=$?
-    notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history | tail -n 1 | sed 's/[0-9]//g')"
+    notify-send --urgency=low --expire-time=300000 --icon "$([ $? = 0 ] && echo terminal || echo error)" "$(history | tail -n 1 | sed 's/[0-9]//g')"
     beep
     return $EXIT_CODE
 }
@@ -197,3 +197,4 @@ source "$HOME/.asdf/asdf.sh"
 source "$HOME/.asdf/completions/asdf.bash"
 source "$HOME/.cargo/env"
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
+alias assume="source assume"
